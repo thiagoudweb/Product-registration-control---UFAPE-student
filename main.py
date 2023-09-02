@@ -1,7 +1,8 @@
 ############ TELA DE LOGUIN ------
-import cadastro
-import mod_buscar
-import editar_propriedades
+import modulos_projeto.cadastro as cadastro
+import modulos_projeto.mod_buscar as mod_buscar
+import modulos_projeto.editar_propriedades as editar_propriedades
+import limpar_terminal
 
 def tela_de_opcao():
     print("'''''''' ESCOLHA UMA OPÇÃO ''''''''''")
@@ -31,10 +32,11 @@ def condicionais_do_usuario(opcao):
 ################ TELA INICIAL 
 
 while True:
-   tela_de_opcao()
-   entrada_usuario = input("Digite uma opção:")
-   condicionais_do_usuario(entrada_usuario)
-   if entrada_usuario == '5':
+    limpar_terminal.limpar_terminal()
+    tela_de_opcao()
+    entrada_usuario = input("Digite uma opção:")
+    condicionais_do_usuario(entrada_usuario)
+    if entrada_usuario == '5':
        break
    
 
