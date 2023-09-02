@@ -1,43 +1,55 @@
-############ TELA DE LOGUIN ------
-import modulos_projeto.cadastro as cadastro
-import modulos_projeto.mod_buscar as mod_buscar
-import modulos_projeto.editar_propriedades as editar_propriedades
+# --------------------- IMPORTAR PARTES DA APLICACAO --------------------------
+from modulos_projeto import cadastrar_item
+from modulos_projeto import ver_items
+from modulos_projeto import atualizar_item
+from modulos_projeto import deletar_item
+
 import limpar_terminal
 
-def tela_de_opcao():
-    print("'''''''' ESCOLHA UMA OPÇÃO ''''''''''")
+
+# 2.1. MENU INICIAL PARA O USUARIO SELECIONAR A OPCAO DE INTERESSE
+def menu_usuario():
+    print("\n'''''' ESCOLHA UMA OPÇÃO ''''''''''\n")
     print("[1].CADASTRAR ITEM")
     print("[2].BUSCAR ITEM")
     print("[3].EDITAR ITENS CADASTRADOS")
     print("[4].REMOVER ITEM CADASTRADO")
-    print("[5].SAIR")
-
-
-######## ENTRADA DE DADOS ------
-
-def condicionais_do_usuario(opcao):
-    if opcao == '1':
-       cadastro.cadastro_do_produto()
+    print("[5].SAIR\n")
+    print("''''''''''''''''''''''''''''''''''''")
     
-    elif opcao == '2':
-       mod_buscar.buscar_itens()
+    
+#  SELECIONAR A OPCAO DE INTERESSE
+def escolha_usuario():
+    while True:
+        limpar_terminal.limpar_terminal()
+        menu_usuario()  # CHAMAR MENU PRINCIPAL
+        escolha = input('Digite uma opção de escolha acima: ')
+
+        if escolha == '1':
+            limpar_terminal.limpar_terminal()
+            cadastrar_item.cadastro()
             
-    elif opcao == '3':
-        editar_propriedades.editar_propri_item()
-
-    elif opcao == '4':
-        print("Você escolheu a opção 4")  
-
-
-################ TELA INICIAL 
-
-while True:
-    limpar_terminal.limpar_terminal()
-    tela_de_opcao()
-    entrada_usuario = input("Digite uma opção:")
-    condicionais_do_usuario(entrada_usuario)
-    if entrada_usuario == '5':
-       break
-   
-
-   
+        elif escolha == '2':
+            limpar_terminal.limpar_terminal()
+            ver_items.ver_items()
+            
+        elif escolha == '3':
+            limpar_terminal.limpar_terminal()
+            atualizar_item.atualizar_dados()
+            
+        elif escolha == '4':
+            limpar_terminal.limpar_terminal()
+            deletar_item.deletar_item()
+        
+        elif escolha == '5':
+            limpar_terminal.limpar_terminal()
+            print("\n******** SAINDO DO PROGRAMA *********\n")
+            break
+        
+        else:
+            print('Digite uma opção válida!')
+            
+            
+# EXECUTAR O INICIO DO PROGRAMA, EXECUTE DIRETAMENTE
+if __name__ == '__main__':  # NAO EXECUTAVEL SE FOR MODULO
+    escolha_usuario()
